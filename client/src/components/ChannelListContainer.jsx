@@ -3,7 +3,10 @@ import { ChannelList, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from './';
-import HospitalIcon from '../assets/hospital.png'
+import LOGO_CHT_CLD from '../assets/LOGO_CHT_CLD_eckig_zoom.png'
+import Optionen from '../assets/settings.png'
+import Kalender from '../assets/kalender.png'
+import Benutzer from '../assets/benutzer.png'
 import LogoutIcon from '../assets/logout.png'
 
 const cookies = new Cookies();
@@ -12,20 +15,35 @@ const SideBar = ({ logout }) => (
     <div className="channel-list__sidebar">
         <div className="channel-list__sidebar__icon1">
             <div className="icon1__inner">
-                <img src={HospitalIcon} alt="Hospital" width="30" />
+                <img src={LOGO_CHT_CLD} alt="LOGO_CHT_CLD" width="60" />
             </div>
         </div>
-        <div className="channel-list__sidebar__icon2">
+        <div className="channel-list__sidebar__icon1">
+            <div className="icon1__inner">
+                <img src={Benutzer} alt="Benutzer" width="30" />
+            </div>
+        </div>
+        <div className="channel-list__sidebar__icon1">
+            <div className="icon1__inner">
+                <img src={Kalender} alt="Kalender" width="30" />
+            </div>
+        </div>
+        <div className="channel-list__sidebar__icon1">
+            <div className="icon1__inner">
+                <img src={Optionen} alt="Optionen" width="30" />
+            </div>
+        </div>
+        <div className="channel-list__sidebar__icon1">
             <div className="icon1__inner" onClick={logout}>
-                <img src={LogoutIcon} alt="Logout" width="30" />
+                <img src={LogoutIcon} alt="Profile" width="30" />
             </div>
         </div>
     </div>
 );
 
 const CompanyHeader = () => (
-    <div className="channel-list__header">
-        <p className="channel-list__header__text">Medical Pager</p>
+    <div className="header-chtcld">
+        <p>CHT CLD</p>
     </div>
 )
 
@@ -45,7 +63,6 @@ const ChannelListContent = ({ isCreating, setIsCreating, setCreateType, setIsEdi
         cookies.remove('userId');
         cookies.remove('username');
         cookies.remove('fullName');
-        cookies.remove('avatarURL');
         cookies.remove('hashedPassword');
         cookies.remove('phoneNumber');
 

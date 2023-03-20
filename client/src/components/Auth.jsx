@@ -9,7 +9,7 @@ const cookies = new Cookies();
 const initialState = {
     fullName: '',
     username: '',
-    password: '',
+    password: '',   
     confirmPassword: '',
     phoneNumber: '',
     avatarURL: '',
@@ -31,7 +31,7 @@ const Auth = () => {
         const URL = 'http://localhost:5000/auth';
 
         const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-            username, password, fullName: form.fullName, phoneNumber, avatarURL,
+            username, password, fullName: form.fullName, phoneNumber,
         });
 
         cookies.set('token', token);
@@ -41,7 +41,6 @@ const Auth = () => {
 
         if(isSignup) {
             cookies.set('phoneNumber', phoneNumber);
-            cookies.set('avatarURL', avatarURL);
             cookies.set('hashedPassword', hashedPassword);
         }
 
@@ -53,13 +52,13 @@ const Auth = () => {
     }
 
     return (
-        <div className="auth__form-container">
-            <div className="auth__form-container_fields">
-                <div className="auth__form-container_fields-content">
+        <div className="log">
+            <div className="log-felder">
+                <div className="log-box">
                     <p>{isSignup ? 'Sign Up' : 'Sign In'}</p>
                     <form onSubmit={handleSubmit}>
                         {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
+                            <div className="log_box_i">
                                 <label htmlFor="fullName">Full Name</label>
                                 <input 
                                     name="fullName" 
@@ -70,7 +69,7 @@ const Auth = () => {
                                 />
                             </div>
                         )}
-                        <div className="auth__form-container_fields-content_input">
+                        <div className="log_box_i">
                             <label htmlFor="username">Username</label>
                                 <input 
                                     name="username" 
@@ -81,7 +80,7 @@ const Auth = () => {
                                 />
                             </div>
                         {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
+                            <div className="log_box_i">
                                 <label htmlFor="phoneNumber">Phone Number</label>
                                 <input 
                                     name="phoneNumber" 
@@ -92,19 +91,7 @@ const Auth = () => {
                                 />
                             </div>
                         )}
-                        {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
-                                <label htmlFor="avatarURL">Avatar URL</label>
-                                <input 
-                                    name="avatarURL" 
-                                    type="text"
-                                    placeholder="Avatar URL"
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        )}
-                        <div className="auth__form-container_fields-content_input">
+                        <div className="log_box_i">
                                 <label htmlFor="password">Password</label>
                                 <input 
                                     name="password" 
@@ -115,7 +102,7 @@ const Auth = () => {
                                 />
                             </div>
                         {isSignup && (
-                            <div className="auth__form-container_fields-content_input">
+                            <div className="log_box_i">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
                                 <input 
                                     name="confirmPassword" 
@@ -142,9 +129,6 @@ const Auth = () => {
                         </p>
                     </div>
                 </div> 
-            </div>
-            <div className="auth__form-container_image">
-                <img src={signinImage} alt="sign in" />
             </div>
         </div>
     )
